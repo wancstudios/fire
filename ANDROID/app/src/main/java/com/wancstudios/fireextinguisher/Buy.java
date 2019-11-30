@@ -121,8 +121,6 @@ public class Buy extends AppCompatActivity {
         ){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-//                String image = imageToString(bitmap);
-
                 Map<String,String> params = new HashMap<>();
                 params.put("name",buy_name.getText().toString());
                 params.put("vender",vendor_name.getText().toString());

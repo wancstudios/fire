@@ -1,6 +1,7 @@
 package com.wancstudios.fireextinguisher;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +11,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-public class DailyRecordsistAdapter extends RecyclerView.Adapter
+import java.util.ArrayList;
+
+
+public class DailyRecordsistAdapter extends RecyclerView.Adapter<DailyRecordsistAdapter.ItemListViewHolder>
 {
     private Context context;
+   public ArrayList<DailyRecordsContainer> data;
 
-    public DailyRecordsistAdapter(Context context)
+    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+    public DailyRecordsistAdapter(Context context, ArrayList<DailyRecordsContainer> data)
     {
          this.context=context;
+         this.data = data;
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public ItemListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.container_daily_records,parent,false);
@@ -30,14 +42,25 @@ public class DailyRecordsistAdapter extends RecyclerView.Adapter
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull final ItemListViewHolder holder, int position)
     {
-
+        holder.item_name.setText(data.get(position).item_name);
+        holder.item_amount.setText(data.get(position).item_amount);
+        holder.item_quantity.setText(data.get(position).item_quantity);
+        holder.othername.setText(data.get(position).otherName);
+        holder.date.setText(data.get(position).date);
+        storageRef.child(data.get(position).item_name+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri)
+            {
+                Glide.with(context).load(uri).into(holder.image);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return data.size();
     }
 
 
