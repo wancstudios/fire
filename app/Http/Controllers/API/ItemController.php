@@ -9,6 +9,7 @@ use App\Sold;
 use App\Buy;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DB;
 
 class ItemController extends Controller
 {
@@ -81,6 +82,43 @@ class ItemController extends Controller
             return "1";
         }
         else "not found";
+    }
+
+    public function itemCount(){
+        return Item::all()->count();
+    }
+
+    public function dailyRecords(){
+        $data = array();
+        for($i = 0; $i < 10; $i++){
+        $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
+        $date = Carbon::now()->subDay(0)->isoFormat('YYYY-MM-DD');
+        $today = Carbon::now()->subDay($i)->isoFormat('DD-MM-YYYY');
+        $Profit = Sold::whereDate('created_at', $date)->sum('profit');
+        $soldItem = Sold::whereDate('created_at', $date)->sum('quantity');
+        $buyItem = Buy::whereDate('created_at', $date)->sum('quantity');
+        $web = array("sold" => $Profit, "soldItem" => $soldItem, "buyItem" => $buyItem);
+        $data[$today] = $web;
+    }
+        return $data;
+    }
+
+    public function dailyData(){
+        $data = array();
+
+        for($i = 0 ; $i < 10; $i++){
+        $date = Carbon::now()->subDay(1)->isoFormat('YYYY-MM-DD');
+        $today = Carbon::now()->subDay(1)->isoFormat('DD-MM-YYYY');
+
+        $customers = Sold::whereDate('created_at', $date)->select('name','customer','quantity','price_sold', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
+        
+        $customersBuy = Buy::whereDate('created_at', $date)->select('name', 'vender as vendor', 'quantity', 'price_buy', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
+
+        $todayData = $customers->concat($customersBuy)->all();
+        
+        $data[$today] = $todayData;
+        }
+        return $data;
     }
 
     public function data(){

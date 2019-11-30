@@ -28,11 +28,11 @@ class BuyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
 
         $item = Item::where('name', $request->name)->first();
         if(!$item)  return "Item Not Found";
-    
+
         $var = Buy::create([
             'name' => $request->name,
             'vender' => $request->vender,
@@ -41,9 +41,11 @@ class BuyController extends Controller
             'profit' => 0
             ]);
 
-        Item::where('name', $request->name)->increment('quantity',$request->quantity);
-        Item::where('name', $request->name)->update(['price'=>$request->price_buy]);
-        if($var) return "1";
+        if($var){
+          Item::where('name', $request->name)->increment('quantity',$request->quantity);
+          Item::where('name', $request->name)->update(['price'=>$request->price_buy]);
+          return "1";
+        }
         else return "0";
 
     }
