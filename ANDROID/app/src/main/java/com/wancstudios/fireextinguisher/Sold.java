@@ -9,6 +9,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class Sold extends AppCompatActivity {
 
 
@@ -16,7 +18,6 @@ public class Sold extends AppCompatActivity {
     EditText customer_name;
     EditText sold_amount;
     EditText sold_quantity;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +28,12 @@ public class Sold extends AppCompatActivity {
         sold_amount = findViewById(R.id.sold_amount);
         sold_quantity = findViewById(R.id.sold_quantity);
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>
-//            (this, android.R.layout.select_dialog_item, DatabaseHelper.itemsname);
-//        AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.sold_name);
-//
-//        actv.setThreshold(1);
-//        actv.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+            (this, android.R.layout.select_dialog_item, MainActivity.itemsname);
+        AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.sold_name);
+
+        actv.setThreshold(1);
+        actv.setAdapter(adapter);
     }
 
 

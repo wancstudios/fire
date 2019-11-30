@@ -27,12 +27,12 @@ public class Buy extends AppCompatActivity {
         buy_amount = findViewById(R.id.buy_amount);
         buy_quantity = findViewById(R.id.buy_quantity);
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>
-//            (this, android.R.layout.select_dialog_item, DatabaseHelper.itemsname);
-//        AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.buy_name);
-//
-//        actv.setThreshold(1);//will start working from first character
-//        actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+            (this, android.R.layout.select_dialog_item, MainActivity.itemsname);
+        AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.buy_name);
+
+        actv.setThreshold(1);//will start working from first character
+        actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
     }
 
 

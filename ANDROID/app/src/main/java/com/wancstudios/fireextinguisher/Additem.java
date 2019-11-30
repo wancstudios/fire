@@ -80,13 +80,13 @@ public class Additem extends AppCompatActivity {
         }
         else
         {
+            pd.show();
             postData();
             StorageReference childRef = storageRef.child(add_name.getText().toString() +".jpg");
             UploadTask uploadTask = childRef.putFile(selectedImage);
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
                     Toast.makeText(Additem.this, "Upload successful", Toast.LENGTH_SHORT).show();
                     done = true;
                     pd.dismiss();
@@ -176,9 +176,9 @@ public class Additem extends AppCompatActivity {
 //                String image = imageToString(bitmap);
 
                 Map<String,String> params = new HashMap<>();
-                params.put("name","mouse");
-                params.put("price","200");
-                params.put("quantity","10");
+                params.put("name",add_name.getText().toString());
+                params.put("price",add_amount.getText().toString());
+                params.put("quantity",add_quantity.getText().toString());
                 return params;
             }
         };

@@ -23,6 +23,7 @@
         android:layout_width="175dp"
         android:layout_height="58dp"
         android:text="BUY"
+        android:onClick="insertbuy"
         android:background="#354658"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"

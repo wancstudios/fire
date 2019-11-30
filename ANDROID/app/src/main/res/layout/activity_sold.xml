@@ -24,6 +24,7 @@
         android:layout_height="58dp"
         android:background="#354658"
         android:text="SOLD"
+        android:onClick="insertSold"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
