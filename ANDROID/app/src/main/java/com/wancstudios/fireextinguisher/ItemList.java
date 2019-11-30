@@ -9,6 +9,6 @@ public class ItemList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.container_item);
+        setContentView(R.layout.recyclerview_item);
     }
 }
