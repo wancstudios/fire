@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "383944931759",
+    "firebase_url": "https://fireextinguisher-f330e.firebaseio.com",
+    "project_id": "fireextinguisher-f330e",
+    "storage_bucket": "fireextinguisher-f330e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383944931759:android:b6ed61fcfedf674e7e175a",
+        "android_client_info": {
+          "package_name": "com.wancstudios.fireextinguisher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383944931759-fgd1op5ija1ihucmj6mn3dijnuike2jb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wancstudios.fireextinguisher",
+            "certificate_hash": "18326e52131cbef41ccda54fbeb838d60ba7904b"
+          }
+        },
+        {
+          "client_id": "383944931759-tcb9ph04g7qgpkgnljqjfo99qnva3r3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa1L_pO9SZH1MLQJQtBnkxXpzMq31mArI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383944931759-tcb9ph04g7qgpkgnljqjfo99qnva3r3c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
