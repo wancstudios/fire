@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background=" #24313F"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/item_list"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:onClick="ItemListBttn"
+        android:background="@drawable/itemlist"
+        app:layout_constraintBottom_toBottomOf="@+id/daily_records"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/daily_records"
+        app:layout_constraintTop_toTopOf="@+id/daily_records"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/daily_records"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:layout_marginTop="20dp"
+        android:onClick="DailyrecordsBttn"
+        android:background="@drawable/dailyrecords"
+        app:layout_constraintEnd_toStartOf="@+id/item_list"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Manage"
+        app:layout_constraintTop_toBottomOf="@+id/ADMIN" />
+
+    <Button
+        android:id="@+id/Manage"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:background="@drawable/manageitem"
+        android:onClick="ManageItem"
+        app:layout_constraintBottom_toBottomOf="@+id/daily_records"
+        app:layout_constraintEnd_toStartOf="@+id/daily_records"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/daily_records"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/ADMIN"
+        style="?attr/actionBarPopupTheme"
+        android:layout_width="210sp"
+        android:layout_height="40sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="ADMIN"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#F0304D"
+        app:autoSizeTextType="uniform"
+        app:fontFamily="@font/roboto_slab_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:textAllCaps="true" />
+
+    <TextView
+        android:id="@+id/Dashboard"
+        style="?attr/actionBarPopupTheme"
+        android:layout_width="210sp"
+        android:layout_height="40sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="64dp"
+        android:text="DASHBOARD"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#F0304D"
+        app:autoSizeTextType="uniform"
+        app:fontFamily="@font/roboto_slab_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textAllCaps="true" />
+
+    <TextView
+        android:id="@+id/RECORDS"
+        style="?attr/actionBarPopupTheme"
+        android:layout_width="210sp"
+        android:layout_height="40sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="RECORDS"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#F0304D"
+        app:autoSizeTextType="uniform"
+        app:fontFamily="@font/roboto_slab_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:textAllCaps="true" />
+
+    <TextView
+        android:id="@+id/month"
+        android:layout_width="238dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="DECEMBER 2019"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#ffffff"
+        app:fontFamily="@font/nunito_sans_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Dashboard" />
+
+    <Button
+        android:id="@+id/MainButtonSold"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="172dp"
+        android:layout_height="137dp"
+        android:background="@drawable/redbutton"
+        app:layout_constraintBottom_toBottomOf="@+id/MainButtonBought"
+        app:layout_constraintEnd_toStartOf="@+id/MainButtonBought"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/MainButtonBought"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/addItem"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:background="@drawable/item"
+        android:onClick="AddItem"
+        app:layout_constraintBottom_toBottomOf="@+id/soldItem"
+        app:layout_constraintEnd_toStartOf="@+id/soldItem"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/soldItem"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/soldItem"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/sold"
+        android:onClick="Sold"
+        app:layout_constraintEnd_toStartOf="@+id/buyItem"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addItem"
+        app:layout_constraintTop_toBottomOf="@+id/RECORDS" />
+
+    <Button
+        android:id="@+id/buyItem"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:background="@drawable/bought"
+        android:onClick="Buy"
+        app:layout_constraintBottom_toBottomOf="@+id/soldItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/soldItem"
+        app:layout_constraintTop_toTopOf="@+id/soldItem"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/soldAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="₹120000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#ffffff"
+        app:fontFamily="@font/roboto_slab_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/MainButtonSold"
+        app:layout_constraintEnd_toEndOf="@+id/MainButtonSold"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/MainButtonSold"
+        app:layout_constraintTop_toTopOf="@+id/MainButtonSold"
+        app:layout_constraintVertical_bias="0.554" />
+
+    <TextView
+        android:id="@+id/RecordItemCount"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#ffffff"
+        app:fontFamily="@font/roboto_slab"
+        app:layout_constraintBottom_toBottomOf="@+id/addItem"
+        app:layout_constraintEnd_toEndOf="@+id/addItem"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/addItem"
+        app:layout_constraintTop_toTopOf="@+id/addItem"
+        app:layout_constraintVertical_bias="0.613" />
+
+    <TextView
+        android:id="@+id/RecordSoldCount"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:text="50"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#ffffff"
+        app:fontFamily="@font/roboto_slab"
+        app:layout_constraintBottom_toBottomOf="@+id/soldItem"
+        app:layout_constraintEnd_toEndOf="@+id/soldItem"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/soldItem"
+        app:layout_constraintTop_toTopOf="@+id/soldItem"
+        app:layout_constraintVertical_bias="0.612" />
+
+    <TextView
+        android:id="@+id/RecordBoughtCount"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:text="50"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#ffffff"
+        app:fontFamily="@font/roboto_slab"
+        app:layout_constraintBottom_toBottomOf="@+id/buyItem"
+        app:layout_constraintEnd_toEndOf="@+id/buyItem"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/buyItem"
+        app:layout_constraintTop_toTopOf="@+id/buyItem"
+        app:layout_constraintVertical_bias="0.612" />
+
+    <Button
+        android:id="@+id/MainButtonBought"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="170dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/blackbtton"
+        android:radius="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/MainButtonSold"
+        app:layout_constraintTop_toBottomOf="@+id/month" />
+
+    <TextView
+        android:id="@+id/boughtAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="₹120000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#ffffff"
+        app:fontFamily="@font/roboto_slab_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/MainButtonBought"
+        app:layout_constraintEnd_toEndOf="@+id/MainButtonBought"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/MainButtonBought"
+        app:layout_constraintTop_toTopOf="@+id/MainButtonBought"
+        app:layout_constraintVertical_bias="0.554" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soldItem" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MainButtonBought" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
