@@ -115,16 +115,18 @@ class ItemController extends Controller
         // $date = Carbon::now()->subDay(0)->isoFormat('YYYY-MM-DD');
         
         for($i = 0 ; $i < 30 ; $i++){
-        $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
-        $today = Carbon::now()->subDay($i)->isoFormat('DD-MM-YYYY');
 
-        $customers = Sold::whereDate('created_at', $date)->select('name','customer','quantity','price_sold', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
-        
-        $customersBuy = Buy::whereDate('created_at', $date)->select('name', 'vender as vendor', 'quantity', 'price_buy', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
+            $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
+            $today = Carbon::now()->subDay($i)->isoFormat('DD-MM-YYYY');
 
-        $todayData = $customers->concat($customersBuy)->all();
-        
-        $data[$today] = $todayData;
+            $customers = Sold::whereDate('created_at', $date)->select('name','customer','quantity','price_sold', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
+            
+            $customersBuy = Buy::whereDate('created_at', $date)->select('name', 'vender as vendor', 'quantity', 'price_buy', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
+
+            $todayData = $customers->concat($customersBuy)->all();
+
+            if($customers->isNotEmpty() || $customersBuy->isNotEmpty())
+              $data[$today] = $todayData;
         
     }
         return $data;
