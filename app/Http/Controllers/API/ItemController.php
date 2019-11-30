@@ -61,10 +61,14 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, $item_name)
     {
-        $item->update($request->all());
-        return new ItemResource($item);
+        $item = Item::whereName($item_name)->first();
+        if($item){
+            $item->update($request->all());
+             return new ItemResource($item);
+        }
+        else return "Item not found";
     }
 
     /**
@@ -106,9 +110,13 @@ class ItemController extends Controller
     public function dailyData(){
         $data = array();
 
-        for($i = 0 ; $i < 10; $i++){
-        $date = Carbon::now()->subDay(1)->isoFormat('YYYY-MM-DD');
-        $today = Carbon::now()->subDay(1)->isoFormat('DD-MM-YYYY');
+        // $startingDate = Sold::select(DB::raw('DATE(`created_at`) as date'))->oldest()->first();
+        // $start = $startingDate->date;
+        // $date = Carbon::now()->subDay(0)->isoFormat('YYYY-MM-DD');
+        
+        for($i = 0 ; $i < 30 ; $i++){
+        $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
+        $today = Carbon::now()->subDay($i)->isoFormat('DD-MM-YYYY');
 
         $customers = Sold::whereDate('created_at', $date)->select('name','customer','quantity','price_sold', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
         
@@ -117,7 +125,8 @@ class ItemController extends Controller
         $todayData = $customers->concat($customersBuy)->all();
         
         $data[$today] = $todayData;
-        }
+        
+    }
         return $data;
     }
 

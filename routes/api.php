@@ -25,6 +25,8 @@ Route::apiResource('/item','API\ItemController');
 Route::apiResource('/buy','API\BuyController');
 Route::apiResource('/sold','API\SoldController');
 
+Route::put('/item/{{ item_name }}', 'API\ItemController@update');
+
 Route::get('/data','API\ItemController@data');
 Route::get('/itemCount','API\ItemController@itemCount');
 Route::get('/dailyRecords','API\ItemController@dailyRecords');
