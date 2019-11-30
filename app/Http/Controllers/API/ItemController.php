@@ -10,6 +10,7 @@ use App\Buy;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
+use Carbon\CarbonPeriod;
 
 class ItemController extends Controller
 {
@@ -110,18 +111,25 @@ class ItemController extends Controller
     public function dailyData(){
         $data = array();
 
-        // $startingDate = Sold::select(DB::raw('DATE(`created_at`) as date'))->oldest()->first();
-        // $start = $startingDate->date;
-        // $date = Carbon::now()->subDay(0)->isoFormat('YYYY-MM-DD');
+        $startingDate = Sold::select(DB::raw('DATE(`created_at`) as date'))->oldest()->first();
+        $start = $startingDate->date;
+        $date = Carbon::now()->subDay(0)->isoFormat('YYYY-MM-DD');
+
+        $period = CarbonPeriod::create($start, $date);
+        $periodCount = $period->count();
         
-        for($i = 0 ; $i < 30 ; $i++){
+        for($i = 0 ; $i < $periodCount ; $i++){
 
             $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
             $today = Carbon::now()->subDay($i)->isoFormat('DD-MM-YYYY');
 
-            $customers = Sold::whereDate('created_at', $date)->select('name','customer','quantity','price_sold', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
+            $customers = Sold::whereDate('created_at', $date)->select('name','customer','quantity','price_sold as price', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
+            $customersBuy = Buy::whereDate('created_at', $date)->select('name', 'vender as customer', 'quantity', 'price_buy as price', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
             
-            $customersBuy = Buy::whereDate('created_at', $date)->select('name', 'vender as vendor', 'quantity', 'price_buy', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
+            foreach($customers as $cs)
+                 $cs->setAttribute('type','sold');
+            foreach($customersBuy as $cb)
+                 $cb->setAttribute('type','buy');
 
             $todayData = $customers->concat($customersBuy)->all();
 
