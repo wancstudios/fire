@@ -44,10 +44,16 @@ public class DailyRecordsistAdapter extends RecyclerView.Adapter<DailyRecordsist
     @Override
     public void onBindViewHolder(@NonNull final ItemListViewHolder holder, int position)
     {
-        holder.item_name.setText(data.get(position).item_name);
+        if(data.get(position).type.equals("sold"))
+        {
+            holder.othername.setText("SOLD TO : "+data.get(position).otherName);
+        }
+        else
+        {
+            holder.othername.setText("BOUGHT FROM : "+data.get(position).otherName);
+        }
+        holder.item_name.setText(data.get(position).item_name +" X " + data.get(position).item_quantity);
         holder.item_amount.setText(data.get(position).item_amount);
-        holder.item_quantity.setText(data.get(position).item_quantity);
-        holder.othername.setText(data.get(position).otherName);
         holder.date.setText(data.get(position).date);
         storageRef.child(data.get(position).item_name+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -66,16 +72,15 @@ public class DailyRecordsistAdapter extends RecyclerView.Adapter<DailyRecordsist
 
     public class ItemListViewHolder extends RecyclerView.ViewHolder
     {
-        TextView item_name,item_amount,item_quantity,othername,date;
+        TextView item_name,item_amount,othername,date;
         ImageView image;
         public ItemListViewHolder(View itemview)
         {
             super(itemview);
-            item_name = itemView.findViewById(R.id.item_name);
+            item_name = itemView.findViewById(R.id.itemname_daily);
             othername = itemview.findViewById(R.id.CustomerName_daily);
-            item_amount = itemView.findViewById(R.id.item_amount);
-            item_quantity = itemView.findViewById(R.id.item_quantity);
-            image = itemView.findViewById(R.id.Item_image);
+            item_amount = itemView.findViewById(R.id.amount_daily);
+            image = itemView.findViewById(R.id.image_daily);
             date = itemview.findViewById(R.id.date_daily);
         }
     }

@@ -8,6 +8,36 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/addItem"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:background="@drawable/item"
+        android:onClick="AddItem"
+        app:layout_constraintBottom_toBottomOf="@+id/soldItem"
+        app:layout_constraintEnd_toStartOf="@+id/soldItem"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/soldItem"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/RecordItemCount"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#ffffff"
+        android:text="4565"
+        app:fontFamily="@font/roboto_slab"
+        app:layout_constraintBottom_toBottomOf="@+id/addItem"
+        app:layout_constraintEnd_toEndOf="@+id/addItem"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/addItem"
+        app:layout_constraintTop_toTopOf="@+id/addItem"
+        app:layout_constraintVertical_bias="0.613" />
+
+    <Button
         android:id="@+id/item_list"
         style="@android:style/Widget.Material.Light.Button.Borderless"
         android:layout_width="120sp"
@@ -131,20 +161,6 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/addItem"
-        style="@android:style/Widget.Material.Light.Button.Borderless"
-        android:layout_width="120sp"
-        android:layout_height="120sp"
-        android:background="@drawable/item"
-        android:onClick="AddItem"
-        app:layout_constraintBottom_toBottomOf="@+id/soldItem"
-        app:layout_constraintEnd_toStartOf="@+id/soldItem"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/soldItem"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
         android:id="@+id/soldItem"
         style="@android:style/Widget.Material.Light.Button.Borderless"
         android:layout_width="120sp"
@@ -186,21 +202,6 @@
         app:layout_constraintStart_toStartOf="@+id/MainButtonSold"
         app:layout_constraintTop_toTopOf="@+id/MainButtonSold"
         app:layout_constraintVertical_bias="0.554" />
-
-    <TextView
-        android:id="@+id/RecordItemCount"
-        android:layout_width="45dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#ffffff"
-        app:fontFamily="@font/roboto_slab"
-        app:layout_constraintBottom_toBottomOf="@+id/addItem"
-        app:layout_constraintEnd_toEndOf="@+id/addItem"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/addItem"
-        app:layout_constraintTop_toTopOf="@+id/addItem"
-        app:layout_constraintVertical_bias="0.613" />
 
     <TextView
         android:id="@+id/RecordSoldCount"
