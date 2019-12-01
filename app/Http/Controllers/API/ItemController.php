@@ -67,9 +67,9 @@ class ItemController extends Controller
         $item = Item::whereName($item_name)->first();
         if($item){
             $item->update($request->all());
-             return new ItemResource($item);
+             return "1";
         }
-        else return "Item not found";
+        else return "0";
     }
 
     /**
@@ -81,12 +81,11 @@ class ItemController extends Controller
     public function destroy($item)
     {
         $item = Item::where('name', $item)->orWhere('id',$item)->first();
-        // return $item;
         if($item->delete())
         {
             return "1";
         }
-        else "not found";
+        else "0";
     }
 
     public function itemCount(){
