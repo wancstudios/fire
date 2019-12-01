@@ -81,7 +81,7 @@ class ItemController extends Controller
     public function destroy($item)
     {
         $item = Item::where('name', $item)->orWhere('id',$item)->first();
-        return $item;
+        // return $item;
         if($item->delete())
         {
             return "1";
@@ -147,6 +147,7 @@ class ItemController extends Controller
         $currentWeek = Carbon::now()->startOfDay()->subDays(7);
         $currentMonth = Carbon::now()->startOfDay()->subDays(30);
         $currentYear = Carbon::now()->startOfDay()->subDays(365);
+        
         $todayProfit = Sold::where('created_at' ,'>', $currentDate)->sum('profit');
         $lastWeekProfit = Sold::where('created_at', '>', $currentWeek)->sum('profit');
         $lastMonthProfit = Sold::where('created_at', '>', $currentMonth)->sum('profit');
@@ -159,13 +160,27 @@ class ItemController extends Controller
         $lastMonthItemSold = Sold::where('created_at', '>', $currentMonth)->sum('quantity');
         $lastYearItemSold = Sold::where('created_at', '>', $currentYear)->sum('quantity');
         $totelItemSold = Sold::sum('quantity');
-        
+
+        $todaySoldAmount = Sold::where('created_at' ,'>', $currentDate)->sum('price_sold');
+        $lastWeekSoldAmount = Sold::where('created_at', '>', $currentWeek)->sum('price_sold');
+        $lastMonthSoldAmount = Sold::where('created_at', '>', $currentMonth)->sum('price_sold');
+        $lastYearSoldAmount = Sold::where('created_at', '>', $currentYear)->sum('price_sold');
+        $totelSoldAmount = Sold::sum('price_sold');
+
+        $todayBuyAmount = Buy::where('created_at' ,'>', $currentDate)->sum('price_buy');
+        $lastWeekBuyAmount = Buy::where('created_at', '>', $currentWeek)->sum('price_buy');
+        $lastMonthBuyAmount = Buy::where('created_at', '>', $currentMonth)->sum('price_buy');
+        $lastYearBuyAmount = Buy::where('created_at', '>', $currentYear)->sum('price_buy');
+        $totelBuyAmount = Buy::sum('price_buy');
+
+
         $todayItemBuy = Buy::where('created_at' ,'>', $currentDate)->sum('quantity');
         $lastWeekItemBuy = Buy::where('created_at', '>', $currentWeek)->sum('quantity');
         $lastMonthItemBuy = Buy::where('created_at', '>', $currentMonth)->sum('quantity');
         $lastYearItemBuy = Buy::where('created_at', '>', $currentYear)->sum('quantity');
         $totelItemBuy = Buy::sum('quantity');
 
+        
         
         return [
             'profit' => [
@@ -189,6 +204,22 @@ class ItemController extends Controller
                 'lastMonthItemBuy' => $lastMonthItemBuy,
                 'lastYearItemBuy' => $lastYearItemBuy,
                 'totelItemBuy' => $totelItemBuy
+            ],
+
+            'SoldAmount' => [
+                'todaySoldAmount' => $todaySoldAmount,
+                'lastWeekSoldAmount' => $lastWeekSoldAmount,
+                'lastMonthSoldAmount' => $lastMonthSoldAmount,
+                'lastYearSoldAmount' => $lastYearSoldAmount,
+                'totelSoldAmount' => $totelSoldAmount
+            ],
+
+            'BuyAmount' => [
+                'todayBuyAmount' => $todayBuyAmount,
+                'lastWeekBuyAmount' => $lastWeekBuyAmount,
+                'lastMonthBuyAmount' => $lastMonthBuyAmount,
+                'lastYearBuyAmount' => $lastYearBuyAmount,
+                'totelBuyAmount' => $totelBuyAmount
             ]
         ];
     }
