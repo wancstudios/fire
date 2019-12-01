@@ -49,23 +49,32 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(MainActivity.this, Additem.class);
         startActivity(intent);
+        Itemcount();
+        DataCounts();
     }
+
     public  void Sold(View view)
     {
         Intent intent = new Intent(MainActivity.this, Sold.class);
         startActivity(intent);
+        Itemcount();
+        DataCounts();
     }
 
     public  void Buy(View view)
     {
         Intent intent = new Intent(MainActivity.this, Buy.class);
         startActivity(intent);
+        Itemcount();
+        DataCounts();
     }
 
     public  void ManageItem(View view)
     {
         Intent intent = new Intent(MainActivity.this, Manage.class);
         startActivity(intent);
+        Itemcount();
+        DataCounts();
     }
 
 
@@ -73,12 +82,16 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(MainActivity.this, DailyRecords.class);
         startActivity(intent);
+        Itemcount();
+        DataCounts();
     }
 
     public  void ItemListBttn(View view)
     {
         Intent intent = new Intent(MainActivity.this, ItemList.class);
         startActivity(intent);
+        Itemcount();
+        DataCounts();
     }
 
    public void RequestData()

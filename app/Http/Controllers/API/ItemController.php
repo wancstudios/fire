@@ -67,7 +67,7 @@ class ItemController extends Controller
         $item = Item::whereName($item_name)->first();
         if($item){
             $item->update($request->all());
-             return new ItemResource($item);
+             return "1";
         }
         else return "Item not found";
     }
