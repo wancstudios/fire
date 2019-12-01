@@ -176,7 +176,8 @@ public class Manage extends AppCompatActivity {
         final RequestQueue requestQueue = Volley.newRequestQueue(Manage.this);
 
         StringRequest request = new StringRequest(Request.Method.DELETE,
-            "http://192.168.0.112:8000/api/item/"+manage_name, new Response.Listener<String>() {
+            url,
+            new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.contains("0")){
