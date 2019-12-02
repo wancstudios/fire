@@ -19,9 +19,9 @@ class CreateSoldsTable extends Migration
             $table->string('customer');
             $table->integer('quantity');
             $table->integer('price_sold');
-            // $table->date('date_sold');
             $table->integer('profit');
-            // $table->integer('item_id');
+            $table->integer('balance_paid');
+            $table->integer('balance_required');
             $table->timestamps();
         });
     }

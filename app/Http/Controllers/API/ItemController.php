@@ -94,14 +94,20 @@ class ItemController extends Controller
 
     public function dailyRecords(){
         $data = array();
-        for($i = 0; $i < 10; $i++){
-        $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
+        $startingDate = Sold::select(DB::raw('DATE(`created_at`) as date'))->oldest()->first();
+        $start = $startingDate->date;
         $date = Carbon::now()->subDay(0)->isoFormat('YYYY-MM-DD');
+        $period = CarbonPeriod::create($start, $date);
+        $periodCount = $period->count();
+
+        for($i = 0; $i < $periodCount; $i++){
+        $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
+        // $date = Carbon::now()->subDay(0)->isoFormat('YYYY-MM-DD');
         $today = Carbon::now()->subDay($i)->isoFormat('DD-MM-YYYY');
         $Profit = Sold::whereDate('created_at', $date)->sum('profit');
         $soldItem = Sold::whereDate('created_at', $date)->sum('quantity');
         $buyItem = Buy::whereDate('created_at', $date)->sum('quantity');
-        $web = array("sold" => $Profit, "soldItem" => $soldItem, "buyItem" => $buyItem);
+        $web = array("profit" => $Profit, "soldItem" => $soldItem, "buyItem" => $buyItem);
         $data[$today] = $web;
     }
         return $data;

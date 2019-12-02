@@ -34,12 +34,18 @@ class SoldController extends Controller
         if(!$item)  return "Item Not Found";
         $price = $item->price;
         $profit = ($request->price_sold - $price) * $request->quantity;
+        $balance_required = ($request->price_sold - $request->balance_paid);
+
+        if($item->quantity - $request->quantity < 0) return "That much items are not available";
+
         $var = Sold::create([
             'name' => $request->name,
             'customer' => $request->customer,
             'quantity' => $request->quantity,
             'price_sold' => $request->price_sold,
-            'profit' => $profit
+            'profit' => $profit,
+            'balance_paid' => $request->balance_paid,
+            'balance_required' => $balance_required
             ]);
 
         Item::where('name', $request->name)->decrement('quantity',$request->quantity);
