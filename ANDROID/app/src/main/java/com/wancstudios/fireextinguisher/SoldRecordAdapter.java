@@ -19,14 +19,14 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 
-public class DailyRecordsistAdapter extends RecyclerView.Adapter<DailyRecordsistAdapter.ItemListViewHolder>
+public class SoldRecordAdapter extends RecyclerView.Adapter<SoldRecordAdapter.ItemListViewHolder>
 {
     private Context context;
-   public ArrayList<DailyRecordsContainer> data;
+   public ArrayList<SoldContainer> data;
 
     StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-    public DailyRecordsistAdapter(Context context, ArrayList<DailyRecordsContainer> data)
+    public SoldRecordAdapter(Context context, ArrayList<SoldContainer> data)
     {
          this.context=context;
          this.data = data;
@@ -37,24 +37,18 @@ public class DailyRecordsistAdapter extends RecyclerView.Adapter<DailyRecordsist
     public ItemListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.container_daily_record,parent,false);
+        View view = inflater.inflate(R.layout.container_soldrecord,parent,false);
         return new ItemListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ItemListViewHolder holder, int position)
     {
-        if(data.get(position).type.equals("sold"))
-        {
-            holder.othername.setText("SOLD TO : "+data.get(position).otherName);
-        }
-        else
-        {
-            holder.othername.setText("BOUGHT FROM : "+data.get(position).otherName);
-        }
+        holder.othername.setText("SOLD TO : "+data.get(position).othername);
         holder.item_name.setText(data.get(position).item_name +" X " + data.get(position).item_quantity);
         holder.item_amount.setText(data.get(position).item_amount);
         holder.date.setText(data.get(position).date);
+        holder.balance.setText(data.get(position).balance);
         storageRef.child(data.get(position).item_name+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri)
@@ -72,16 +66,17 @@ public class DailyRecordsistAdapter extends RecyclerView.Adapter<DailyRecordsist
 
     public class ItemListViewHolder extends RecyclerView.ViewHolder
     {
-        TextView item_name,item_amount,othername,date;
+        TextView item_name,item_amount,othername,date,balance;
         ImageView image;
         public ItemListViewHolder(View itemview)
         {
             super(itemview);
-            item_name = itemView.findViewById(R.id.itemname_daily);
-            othername = itemview.findViewById(R.id.CustomerName_daily);
-            item_amount = itemView.findViewById(R.id.amount_daily);
-            image = itemView.findViewById(R.id.image_daily);
-            date = itemview.findViewById(R.id.date_daily);
+            item_name = itemView.findViewById(R.id.soldrecord_item_name);
+            othername = itemview.findViewById(R.id.soldrecord_customer_name);
+            item_amount = itemView.findViewById(R.id.soldrecord_total_amount);
+            image = itemView.findViewById(R.id.soldrecord_image);
+            date = itemview.findViewById(R.id.soldrecord_date);
+            balance = itemview.findViewById(R.id.sold_Balancerecord);
         }
     }
 }

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> itemsname;
     public static String url = "http://192.168.0.112:8000/api/item";
 
-    TextView itemcount, soldcount, buycount,soldamount,buyamount;
+    TextView itemcount, soldcount, buycount,soldamount,buyamount,profitmain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         itemcount = findViewById(R.id.RecordItemCount);
         soldcount = findViewById(R.id.RecordSoldCount);
         buycount = findViewById(R.id.RecordBoughtCount);
+        profitmain = findViewById(R.id.ProfitAmountMAin);
         soldamount = findViewById(R.id.soldAmount);
         buyamount = findViewById(R.id.boughtAmount);
         RequestData();
@@ -136,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         for (int i = 0; i < response.length(); i++) {
-                            String ans = response.getJSONObject("profit").getString("todayProfit");
 
                             soldcount.setText(response.getJSONObject("itemSold").getString("lastMonthItemSold"));
                             buycount.setText(response.getJSONObject("itemBuy").getString("lastMonthItemBuy"));
@@ -187,10 +187,11 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         for (int i = 0; i < response.length(); i++) {
-                            String ans = response.getJSONObject("profit").getString("todayProfit");
 
-                            soldamount.setText(response.getJSONObject("SoldAmount").getString("lastMonthSoldAmount"));
-                            buyamount.setText(response.getJSONObject("BuyAmount").getString("lastMonthBuyAmount"));
+                            soldamount.setText("₹"+response.getJSONObject("SoldAmount").getString("lastMonthSoldAmount"));
+                            buyamount.setText("₹"+response.getJSONObject("BuyAmount").getString("lastMonthBuyAmount"));
+
+                            profitmain.setText("Profit: ₹"+response.getJSONObject("profit").getString("lastMonthProfit"));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
