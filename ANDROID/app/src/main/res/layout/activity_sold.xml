@@ -23,8 +23,8 @@
         android:layout_width="175dp"
         android:layout_height="58dp"
         android:background="#354658"
-        android:text="SOLD"
         android:onClick="insertSold"
+        android:text="SOLD"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,13 +36,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="AMOUNT"
+        android:hint="TOTAL AMOUNT"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/sold_amount_paid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/custome_name" />
+
+    <EditText
+        android:id="@+id/sold_amount_paid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="AMOUNT PAID"
         android:inputType="number"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/sold_quantity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/custome_name" />
+        app:layout_constraintTop_toBottomOf="@+id/sold_amount" />
 
     <EditText
         android:id="@+id/sold_quantity"
@@ -55,7 +68,7 @@
         app:layout_constraintBottom_toTopOf="@+id/sold_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sold_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/sold_amount_paid" />
 
     <EditText
         android:id="@+id/custome_name"
@@ -80,6 +93,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/sold_name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
