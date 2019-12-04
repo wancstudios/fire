@@ -189,19 +189,37 @@
 
     <TextView
         android:id="@+id/soldAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="85dp"
+        android:layout_height="26dp"
         android:layout_marginStart="15dp"
         android:text="₹120000"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#ffffff"
+        android:textSize="18sp"
         app:fontFamily="@font/roboto_slab_bold"
         app:layout_constraintBottom_toBottomOf="@+id/MainButtonSold"
         app:layout_constraintEnd_toEndOf="@+id/MainButtonSold"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/MainButtonSold"
         app:layout_constraintTop_toTopOf="@+id/MainButtonSold"
-        app:layout_constraintVertical_bias="0.554" />
+        app:layout_constraintVertical_bias="0.459" />
+
+    <TextView
+        android:id="@+id/ProfitAmountMAin"
+        android:layout_width="86dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="15dp"
+        android:text="₹120000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        app:fontFamily="@font/roboto_slab_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/MainButtonSold"
+        app:layout_constraintEnd_toEndOf="@+id/MainButtonSold"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/MainButtonSold"
+        app:layout_constraintTop_toBottomOf="@+id/soldAmount"
+        app:layout_constraintVertical_bias="0.13999999" />
 
     <TextView
         android:id="@+id/RecordSoldCount"
