@@ -20,6 +20,8 @@ class SoldResource extends JsonResource
             'customer' => $this->customer,
             'quantity' => $this->quantity,
             'price_sold' => $this->price_sold,
+            'balance_paid' => $this->balance_paid,
+            'balance_required' => $this->balance_required,
             'profit' => $this->profit,
             'date' => $this->created_at->format('d-m-Y'),
             // 'date' => $this->date_sold,

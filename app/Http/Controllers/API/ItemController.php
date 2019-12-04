@@ -147,7 +147,6 @@ class ItemController extends Controller
 
     public function data(){
       
-        // $todayDate = Carbon::today()->format('m-d-Y');
         $currentDate = Carbon::now()->startOfDay();
         $currentWeek = Carbon::now()->startOfDay()->subDays(7);
         $currentMonth = Carbon::now()->startOfDay()->subDays(30);
