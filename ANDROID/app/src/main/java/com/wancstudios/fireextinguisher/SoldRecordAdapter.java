@@ -46,9 +46,10 @@ public class SoldRecordAdapter extends RecyclerView.Adapter<SoldRecordAdapter.It
     {
         holder.othername.setText("SOLD TO : "+data.get(position).othername);
         holder.item_name.setText(data.get(position).item_name +" X " + data.get(position).item_quantity);
-        holder.item_amount.setText(data.get(position).item_amount);
+        holder.item_amount.setText("Total Amount:"+data.get(position).item_amount);
         holder.date.setText(data.get(position).date);
-        holder.balance.setText(data.get(position).balance);
+        holder.balance.setText("Balance :"+data.get(position).balance);
+        holder.profit.setText("Profit :"+data.get(position).profit);
         storageRef.child(data.get(position).item_name+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri)
@@ -66,7 +67,7 @@ public class SoldRecordAdapter extends RecyclerView.Adapter<SoldRecordAdapter.It
 
     public class ItemListViewHolder extends RecyclerView.ViewHolder
     {
-        TextView item_name,item_amount,othername,date,balance;
+        TextView item_name,item_amount,othername,date,balance,profit;
         ImageView image;
         public ItemListViewHolder(View itemview)
         {
@@ -77,6 +78,7 @@ public class SoldRecordAdapter extends RecyclerView.Adapter<SoldRecordAdapter.It
             image = itemView.findViewById(R.id.soldrecord_image);
             date = itemview.findViewById(R.id.soldrecord_date);
             balance = itemview.findViewById(R.id.sold_Balancerecord);
+            profit = itemview.findViewById(R.id.soldrecord_profit);
         }
     }
 }

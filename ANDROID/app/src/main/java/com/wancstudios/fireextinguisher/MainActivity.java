@@ -64,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
         DataCounts();
     }
 
+    public void Sold_records(View view) {
+        Intent intent = new Intent(MainActivity.this, Sold_recycler.class);
+        startActivity(intent);
+        Itemcount();
+        Amount();
+        DataCounts();
+    }
+
     public void Buy(View view) {
         Intent intent = new Intent(MainActivity.this, Buy.class);
         startActivity(intent);

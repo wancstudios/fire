@@ -11,6 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 
 public class Sold_recycler extends AppCompatActivity {
 
-    public String url = "http://192.168.0.112:8000/api/dailyData";
+    public String url = "http://192.168.0.112:8000/api/sold";
     RecyclerView recyclelist;
     public ArrayList<SoldContainer> soldContainers;
     @Override
@@ -39,29 +40,21 @@ public class Sold_recycler extends AppCompatActivity {
     public void RequestData() {
         final RequestQueue requestQueue = Volley.newRequestQueue(Sold_recycler.this);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-            new Response.Listener<JSONObject>() {
+        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+            new Response.Listener<JSONArray>() {
                 @Override
-                public void onResponse(JSONObject response) {
+                public void onResponse(JSONArray response) {
                     try {
-                        JSONArray arraynames = response.names();
-                        for (int i = 0; i < arraynames.length(); i++) {
-                            {
-                                JSONArray arraydata = response.getJSONArray(arraynames.getString(i));
-                                for (int j=0 ; j < arraydata.length();j++)
-                                {
-                                    String name = arraydata.getJSONObject(j).getString("name");
-                                    String othername = arraydata.getJSONObject(j).getString("customer");
-                                    String quantity = arraydata.getJSONObject(j).getString("quantity");
-                                    String price = arraydata.getJSONObject(j).getString("price_sold");
-                                    String date = arraydata.getJSONObject(j).getString("date");
-                                    String balance = arraydata.getJSONObject(j).getString("balance_required");
-                                    String profit = arraydata.getJSONObject(j).getString("profit");
+                        for (int i = 0; i < response.length(); i++) {
+                            String name = response.getJSONObject(i).getString("name");
+                            String othername = response.getJSONObject(i).getString("customer");
+                            String price_sold = response.getJSONObject(i).getString("price_sold");
+                            String quantity = response.getJSONObject(i).getString("quantity");
+                            String balance_required = response.getJSONObject(i).getString("balance_required");
+                            String profit = response.getJSONObject(i).getString("profit");
+                            String date = response.getJSONObject(i).getString("date");
 
-
-                                    soldContainers.add(new SoldContainer(name,price,quantity,othername,date,balance,profit));
-                                }
-                            }
+                            soldContainers.add(new SoldContainer(name, price_sold, quantity, othername, date, balance_required,profit));
                         }
                         recyclelist.setLayoutManager(new LinearLayoutManager(Sold_recycler.this));
                         recyclelist.setAdapter(new SoldRecordAdapter(Sold_recycler.this, soldContainers));
