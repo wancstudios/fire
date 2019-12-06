@@ -74,8 +74,19 @@ class SoldController extends Controller
      */
     public function update(Request $request, Sold $sold)
     {
-        $sold->update($request->all());
-        return response()->json($sold);
+        
+        $balance_required = $sold->balance_required - $request->balance_paid; 
+        if($balance_required < 0){
+            return "not that much amount required";
+        }
+        $balance_paid = $sold->balance_paid + $request->balance_paid;
+        
+        
+        $sold->update([
+            'balance_paid' => $balance_paid,
+            'balance_required' => $balance_required
+        ]);
+        return "1";
     }
 
     /**

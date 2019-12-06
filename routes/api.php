@@ -31,3 +31,4 @@ Route::get('/data','API\ItemController@data');
 Route::get('/itemCount','API\ItemController@itemCount');
 Route::get('/dailyRecords','API\ItemController@dailyRecords');
 Route::get('/dailyData','API\ItemController@dailyData');
+
