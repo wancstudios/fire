@@ -35,7 +35,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        if(Item::where('name',$request->name)->first()) return "Item Already Exists";
+        if(Item::where('name',$request->name)->first()) return "0";
         else {
             Item::create($request->all());
             return "1";

@@ -36,7 +36,7 @@ class SoldController extends Controller
         $profit = ($request->price_sold - $price) * $request->quantity;
         $balance_required = ($request->price_sold * $request->quantity - $request->balance_paid);
 
-        if($item->quantity - $request->quantity < 0) return "That much items are not available";
+        if($item->quantity - $request->quantity < 0) return "-1";
 
         $var = Sold::create([
             'name' => $request->name,

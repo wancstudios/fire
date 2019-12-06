@@ -93,6 +93,10 @@ public class Sold extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Succesfully Added",Toast.LENGTH_SHORT).show();
                         pd.dismiss();
                     }
+                    if(response.contains("-1")){
+                        Toast.makeText(getApplicationContext(),"Less Quantity Left",Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+                    }
                 }
             },
             new Response.ErrorListener() {

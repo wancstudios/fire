@@ -82,24 +82,7 @@ public class Additem extends AppCompatActivity {
         {
             pd.show();
             postData();
-            StorageReference childRef = storageRef.child(add_name.getText().toString() +".jpg");
-            UploadTask uploadTask = childRef.putFile(selectedImage);
-            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(Additem.this, "Upload successful", Toast.LENGTH_SHORT).show();
-                    done = true;
-                    pd.dismiss();
-//                    MyDB.insertRecord(name.getText().toString(), Integer.parseInt(add_amount.getText().toString()), Integer.parseInt(quantity.getText().toString()));
-//                    Toast.makeText(AddItem.this, "SUCCESSFUL INSERTED", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    pd.dismiss();
-                    Toast.makeText(Additem.this, "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
-                }
-            });
+
         }
     }
 
@@ -139,10 +122,27 @@ public class Additem extends AppCompatActivity {
                 public void onResponse(String response) {
 
                     if(response.contains("0")){
-                        Toast.makeText(getApplicationContext(),"Check your Connection",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Item Already Exist",Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
                     }
                     if(response.contains("1")){
-                        Toast.makeText(getApplicationContext(),"Succesfully Added",Toast.LENGTH_SHORT).show();
+
+                        StorageReference childRef = storageRef.child(add_name.getText().toString() +".jpg");
+                        UploadTask uploadTask = childRef.putFile(selectedImage);
+                        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Toast.makeText(getApplicationContext(),"Succesfully Added",Toast.LENGTH_SHORT).show();
+                                done = true;
+                                pd.dismiss();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                pd.dismiss();
+                                Toast.makeText(Additem.this, "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 }
             },
