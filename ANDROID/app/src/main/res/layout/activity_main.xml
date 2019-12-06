@@ -153,6 +153,7 @@
         android:layout_width="172dp"
         android:layout_height="137dp"
         android:background="@drawable/redbutton"
+        android:onClick="Sold_records"
         app:layout_constraintBottom_toBottomOf="@+id/MainButtonBought"
         app:layout_constraintEnd_toStartOf="@+id/MainButtonBought"
         app:layout_constraintHorizontal_bias="0.0"
