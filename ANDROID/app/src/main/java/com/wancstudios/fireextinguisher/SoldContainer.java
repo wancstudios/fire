@@ -11,11 +11,13 @@ public class SoldContainer implements Serializable
     String profit;
     String date;
     String balance;
+    String Id;
 
-    SoldContainer(String name, String amount, String quantity, String othername, String date, String balance, String profit)
+    SoldContainer(String name, String amount, String quantity, String othername, String date, String balance, String profit,String Id)
     {
         this.item_name = name;
         this.item_amount = amount;
+        this.Id = Id;
         this.item_quantity = quantity;
         this.date = date;
         this.othername = othername;

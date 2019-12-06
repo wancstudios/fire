@@ -72,8 +72,9 @@ public class Sold_recycler extends AppCompatActivity {
                             String balance_required = response.getJSONObject(i).getString("balance_required");
                             String profit = response.getJSONObject(i).getString("profit");
                             String date = response.getJSONObject(i).getString("date");
+                            String Id = response.getJSONObject(i).getString("id");
 
-                            soldContainers.add(new SoldContainer(name, price_sold, quantity, othername, date, balance_required,profit));
+                            soldContainers.add(new SoldContainer(name, price_sold, quantity, othername, date, balance_required,profit,Id));
                         }
                         recyclelist.setLayoutManager(new LinearLayoutManager(Sold_recycler.this));
                         recyclelist.setAdapter(new SoldRecordAdapter(Sold_recycler.this, soldContainers));
@@ -187,8 +188,6 @@ public class Sold_recycler extends AppCompatActivity {
         ){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-//                String image = imageToString(bitmap);
-
                 Map<String,String> params = new HashMap<>();
                 params.put("balance_paid",newbalance);
                 return params;

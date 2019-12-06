@@ -50,6 +50,7 @@ public class SoldRecordAdapter extends RecyclerView.Adapter<SoldRecordAdapter.It
         holder.date.setText(data.get(position).date);
         holder.balance.setText("Balance :"+data.get(position).balance);
         holder.profit.setText("Profit :"+data.get(position).profit);
+        holder.Item_ID.setText("ID = "+data.get(position).Id);
         storageRef.child(data.get(position).item_name+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri)
@@ -67,7 +68,7 @@ public class SoldRecordAdapter extends RecyclerView.Adapter<SoldRecordAdapter.It
 
     public class ItemListViewHolder extends RecyclerView.ViewHolder
     {
-        TextView item_name,item_amount,othername,date,balance,profit;
+        TextView item_name,Item_ID,item_amount,othername,date,balance,profit;
         ImageView image;
         public ItemListViewHolder(View itemview)
         {
@@ -78,6 +79,7 @@ public class SoldRecordAdapter extends RecyclerView.Adapter<SoldRecordAdapter.It
             image = itemView.findViewById(R.id.soldrecord_image);
             date = itemview.findViewById(R.id.soldrecord_date);
             balance = itemview.findViewById(R.id.sold_Balancerecord);
+            Item_ID = itemview.findViewById(R.id.sold_item_id);
             profit = itemview.findViewById(R.id.soldrecord_profit);
         }
     }
