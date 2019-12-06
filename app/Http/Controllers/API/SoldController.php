@@ -34,7 +34,7 @@ class SoldController extends Controller
         if(!$item)  return "Item Not Found";
         $price = $item->price;
         $profit = ($request->price_sold - $price) * $request->quantity;
-        $balance_required = ($request->price_sold - $request->balance_paid);
+        $balance_required = ($request->price_sold * $request->quantity - $request->balance_paid);
 
         if($item->quantity - $request->quantity < 0) return "That much items are not available";
 
@@ -42,7 +42,7 @@ class SoldController extends Controller
             'name' => $request->name,
             'customer' => $request->customer,
             'quantity' => $request->quantity,
-            'price_sold' => $request->price_sold,
+            'price_sold' => $request->price_sold * $request->quantity,
             'profit' => $profit,
             'balance_paid' => $request->balance_paid,
             'balance_required' => $balance_required

@@ -38,7 +38,6 @@ public class Sold extends AppCompatActivity {
     EditText sold_quantity;
     EditText sold_amount_paid;
     ProgressDialog pd;
-    int amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +68,6 @@ public class Sold extends AppCompatActivity {
             Toast.makeText(Sold.this, "PLEASE INSERT ALL DATA", Toast.LENGTH_SHORT).show();
         }
         else {
-            amount = Integer.parseInt(sold_amount.getText().toString())*Integer.parseInt(sold_quantity.getText().toString());
             pd.show();
             postData();
         }
@@ -130,7 +128,7 @@ public class Sold extends AppCompatActivity {
                 params.put("name",sold_name.getText().toString());
                 params.put("customer",customer_name.getText().toString());
                 params.put("quantity",sold_quantity.getText().toString());
-                params.put("price_sold",String.valueOf(amount));
+                params.put("price_sold",sold_amount.getText().toString());
                 params.put("balance_paid",sold_amount_paid.getText().toString());
                 return params;
             }
