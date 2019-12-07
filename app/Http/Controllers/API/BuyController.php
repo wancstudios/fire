@@ -18,7 +18,7 @@ class BuyController extends Controller
      */
     public function index()
     {
-        return response()->json(Buy::all());
+        return response()->json(Buy::orderBy('created_at','desc')->get());
     }
 
     /**

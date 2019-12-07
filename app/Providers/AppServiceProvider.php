@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 
-use Illuminate\Support\facades\Schema;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\ServiceProvider;
 

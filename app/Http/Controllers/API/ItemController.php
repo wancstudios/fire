@@ -24,7 +24,7 @@ class ItemController extends Controller
         // $var = Item::find(6);
         // $var = Sold::where('name','MD')->first();
         // dd($var->item->quantity);
-        return ItemResource::collection(Item::all());
+        return ItemResource::collection(Item::orderBy('created_at','desc')->get());
     }
 
     /**

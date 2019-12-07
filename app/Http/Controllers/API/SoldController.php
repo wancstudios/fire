@@ -19,7 +19,7 @@ class SoldController extends Controller
     {
         // $var = Sold::first();
         // dd($var->item->price);
-        return SoldResource::collection(Sold::all());
+        return SoldResource::collection(Sold::orderBy('created_at','desc')->get());
     }
 
     /**
