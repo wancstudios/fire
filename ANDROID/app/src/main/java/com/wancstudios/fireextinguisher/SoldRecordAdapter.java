@@ -46,10 +46,10 @@ public class SoldRecordAdapter extends RecyclerView.Adapter<SoldRecordAdapter.It
     {
         holder.othername.setText("SOLD TO : "+data.get(position).othername);
         holder.item_name.setText(data.get(position).item_name +" X " + data.get(position).item_quantity);
-        holder.item_amount.setText("Total Amount:"+data.get(position).item_amount);
+        holder.item_amount.setText("Total Amount: ₹"+data.get(position).item_amount);
         holder.date.setText(data.get(position).date);
-        holder.balance.setText("Balance :"+data.get(position).balance);
-        holder.profit.setText("Profit :"+data.get(position).profit);
+        holder.balance.setText("Balance : ₹"+data.get(position).balance);
+        holder.profit.setText("Profit : ₹"+data.get(position).profit);
         holder.Item_ID.setText("ID = "+data.get(position).Id);
         storageRef.child(data.get(position).item_name+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

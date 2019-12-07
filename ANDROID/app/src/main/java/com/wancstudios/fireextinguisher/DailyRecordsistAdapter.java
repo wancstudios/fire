@@ -53,7 +53,7 @@ public class DailyRecordsistAdapter extends RecyclerView.Adapter<DailyRecordsist
             holder.othername.setText("BOUGHT FROM : "+data.get(position).otherName);
         }
         holder.item_name.setText(data.get(position).item_name +" X " + data.get(position).item_quantity);
-        holder.item_amount.setText(data.get(position).item_amount);
+        holder.item_amount.setText("₹"+data.get(position).item_amount);
         holder.date.setText(data.get(position).date);
         storageRef.child(data.get(position).item_name+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

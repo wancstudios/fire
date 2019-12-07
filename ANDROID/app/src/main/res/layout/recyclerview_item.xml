@@ -93,6 +93,7 @@
         android:fontFamily="@font/roboto_slab"
         android:text="ITEMS DETAILS"
         android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView3"

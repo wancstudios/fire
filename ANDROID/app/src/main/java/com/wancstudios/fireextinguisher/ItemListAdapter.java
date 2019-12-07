@@ -44,7 +44,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
     public void onBindViewHolder(@NonNull final ItemListViewHolder holder, int position)
     {
         holder.item_name.setText(data.get(position).item_name);
-        holder.item_amount.setText(data.get(position).item_amount);
+        holder.item_amount.setText("₹"+data.get(position).item_amount);
         holder.item_quantity.setText(data.get(position).item_quantity);
         storageRef.child(data.get(position).item_name+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

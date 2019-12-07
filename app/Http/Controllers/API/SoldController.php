@@ -19,7 +19,7 @@ class SoldController extends Controller
     {
         // $var = Sold::first();
         // dd($var->item->price);
-        return SoldResource::collection(Sold::orderBy('created_at','desc')->get());
+        return SoldResource::collection(Sold::all());
     }
 
     /**
@@ -31,7 +31,7 @@ class SoldController extends Controller
     public function store(Request $request)
     {
         $item = Item::where('name', $request->name)->first();
-        if(!$item)  return "Item Not Found";
+        if(!$item)  return "-2";
         $price = $item->price;
         $profit = ($request->price_sold - $price) * $request->quantity;
         $balance_required = ($request->price_sold * $request->quantity - $request->balance_paid);

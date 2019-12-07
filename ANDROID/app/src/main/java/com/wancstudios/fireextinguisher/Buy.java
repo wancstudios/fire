@@ -92,6 +92,10 @@ public class Buy extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Succesfully Added",Toast.LENGTH_SHORT).show();
                         pd.dismiss();
                     }
+                    if(response.contains("-1")){
+                        Toast.makeText(getApplicationContext(),"Item Not Found",Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+                    }
                 }
             },
             new Response.ErrorListener() {

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,6 +46,8 @@ public class Sold_recycler extends AppCompatActivity {
     public ArrayList<SoldContainer> soldContainers;
     public String newbalance,ID;
 
+    ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,8 @@ public class Sold_recycler extends AppCompatActivity {
 
         recyclelist = findViewById(R.id.soldrecord_recycler);
         soldContainers = new ArrayList<>();
+        pd = new ProgressDialog(this);
+        pd.setMessage("updating....");
         RequestData();
     }
 
@@ -123,7 +128,7 @@ public class Sold_recycler extends AppCompatActivity {
                         ID = Idedit.getText().toString();
                         newbalance = userInput.getText().toString();
                         updatedatabalance();
-
+                        pd.show();
                     }
                 })
             .setNegativeButton("Cancel",
@@ -153,11 +158,11 @@ public class Sold_recycler extends AppCompatActivity {
 
                     if(response.contains("0")){
                         Toast.makeText(getApplicationContext(),"Check your Connection",Toast.LENGTH_SHORT).show();
-                       // pd.dismiss();
+                        pd.dismiss();
                     }
                     if(response.contains("1")){
                         Toast.makeText(getApplicationContext(),"Succesfully Added",Toast.LENGTH_SHORT).show();
-                      //  pd.dismiss();
+                       pd.dismiss();
                     }
                 }
             },

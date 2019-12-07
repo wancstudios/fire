@@ -27,6 +27,7 @@
         android:fontFamily="@font/roboto_slab_bold"
         android:text="DAILY RECORDS"
         android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/Dailyrecordrecycle"

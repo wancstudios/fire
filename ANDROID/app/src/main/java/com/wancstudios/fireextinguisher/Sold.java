@@ -97,6 +97,10 @@ public class Sold extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Less Quantity Left",Toast.LENGTH_SHORT).show();
                         pd.dismiss();
                     }
+                    if(response.contains("-2")){
+                        Toast.makeText(getApplicationContext(),"Item Not Found",Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+                    }
                 }
             },
             new Response.ErrorListener() {

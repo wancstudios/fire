@@ -3,6 +3,7 @@ package com.wancstudios.fireextinguisher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,8 +45,38 @@ public class MainActivity extends AppCompatActivity {
         RequestData();
         Itemcount();
         DataCounts();
+        isInternetOn();
         Amount();
     }
+
+
+    public final boolean isInternetOn() {
+
+        // get Connectivity Manager object to check connection
+        ConnectivityManager connec =
+            (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+
+        // Check for network connections
+        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+            connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
+            connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
+            connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+
+            // if connected with internet
+//
+//            Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
+            return true;
+
+        } else if (
+            connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+
+            Toast.makeText(this, "Please Connect to Internet", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return false;
+    }
+
 
 
     public void AddItem(View view) {
@@ -53,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         Itemcount();
         Amount();
+        isInternetOn();
         DataCounts();
     }
 
@@ -60,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Sold.class);
         startActivity(intent);
         Itemcount();
+        isInternetOn();
         Amount();
         DataCounts();
     }
@@ -69,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         Itemcount();
         Amount();
+        isInternetOn();
         DataCounts();
     }
 
@@ -78,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         Itemcount();
         DataCounts();
         Amount();
+        isInternetOn();
     }
 
     public void ManageItem(View view) {
@@ -86,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         Itemcount();
         DataCounts();
         Amount();
+        isInternetOn();
     }
 
 
@@ -94,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         Itemcount();
         DataCounts();
+        isInternetOn();
         Amount();
     }
 
@@ -102,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         Itemcount();
         DataCounts();
+        isInternetOn();
         Amount();
     }
 

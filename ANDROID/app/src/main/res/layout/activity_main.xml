@@ -23,12 +23,12 @@
 
     <TextView
         android:id="@+id/RecordItemCount"
-        android:layout_width="45dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
+        android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#ffffff"
-        android:text="4565"
         app:fontFamily="@font/roboto_slab"
         app:layout_constraintBottom_toBottomOf="@+id/addItem"
         app:layout_constraintEnd_toEndOf="@+id/addItem"
@@ -102,7 +102,7 @@
         android:layout_width="210sp"
         android:layout_height="40sp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="40dp"
         android:text="DASHBOARD"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#F0304D"
@@ -190,10 +190,10 @@
 
     <TextView
         android:id="@+id/soldAmount"
-        android:layout_width="85dp"
+        android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginStart="15dp"
-        android:text="₹120000"
+        android:text="₹0"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#ffffff"
         android:textSize="18sp"
@@ -207,10 +207,10 @@
 
     <TextView
         android:id="@+id/ProfitAmountMAin"
-        android:layout_width="86dp"
+        android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginStart="15dp"
-        android:text="₹120000"
+        android:text="₹0"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#ffffff"
         android:textSize="14sp"
@@ -224,10 +224,10 @@
 
     <TextView
         android:id="@+id/RecordSoldCount"
-        android:layout_width="45dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
-        android:text="50"
+        android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#ffffff"
         app:fontFamily="@font/roboto_slab"
@@ -240,10 +240,10 @@
 
     <TextView
         android:id="@+id/RecordBoughtCount"
-        android:layout_width="45dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
-        android:text="50"
+        android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#ffffff"
         app:fontFamily="@font/roboto_slab"
@@ -272,7 +272,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:text="₹120000"
+        android:text="₹0"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#ffffff"
         app:fontFamily="@font/roboto_slab_bold"
@@ -285,8 +285,8 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_width="411dp"
+        android:layout_height="1dp"
         android:layout_marginTop="20dp"
         android:background="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
@@ -296,9 +296,9 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="411dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
         android:background="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

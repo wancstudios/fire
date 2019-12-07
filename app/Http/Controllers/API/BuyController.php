@@ -18,7 +18,7 @@ class BuyController extends Controller
      */
     public function index()
     {
-        return response()->json(Buy::orderBy('created_at','desc')->get());
+        return response()->json(Buy::all());
     }
 
     /**
@@ -31,7 +31,7 @@ class BuyController extends Controller
     {
 
         $item = Item::where('name', $request->name)->first();
-        if(!$item)  return "Item Not Found";
+        if(!$item)  return "-1";
 
         $var = Buy::create([
             'name' => $request->name,
