@@ -44,7 +44,7 @@ public class SoldRecordAdapter extends RecyclerView.Adapter<SoldRecordAdapter.It
     @Override
     public void onBindViewHolder(@NonNull final ItemListViewHolder holder, int position)
     {
-        holder.othername.setText("SOLD TO : "+data.get(position).othername);
+        holder.othername.setText("Sold to : "+data.get(position).othername);
         holder.item_name.setText(data.get(position).item_name +" X " + data.get(position).item_quantity);
         holder.item_amount.setText("Total Amount: ₹"+data.get(position).item_amount);
         holder.date.setText(data.get(position).date);
