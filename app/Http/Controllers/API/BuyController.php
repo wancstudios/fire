@@ -33,12 +33,14 @@ class BuyController extends Controller
         $item = Item::where('name', $request->name)->first();
         if(!$item)  return "-1";
 
+        $amount = $request->price_buy * $request->quantity;
         $var = Buy::create([
             'name' => $request->name,
             'vender' => $request->vender,
             'quantity' => $request->quantity,
             'price_buy' => $request->price_buy,
-            'profit' => 0
+            'profit' => 0,
+            'amount' => $amount,
             ]);
 
         if($var){

@@ -122,7 +122,7 @@ class ItemController extends Controller
 
         $period = CarbonPeriod::create($start, $date);
         $periodCount = $period->count();
-        
+
         for($i = 0 ; $i < $periodCount ; $i++){
 
             $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
@@ -130,7 +130,7 @@ class ItemController extends Controller
 
             $customers = Sold::whereDate('created_at', $date)->select('name','customer','quantity','price_sold as price', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
             $customersBuy = Buy::whereDate('created_at', $date)->select('name', 'vender as customer', 'quantity', 'price_buy as price', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
-            
+
             foreach($customers as $cs)
                  $cs->setAttribute('type','sold');
             foreach($customersBuy as $cb)
@@ -140,18 +140,21 @@ class ItemController extends Controller
 
             if($customers->isNotEmpty() || $customersBuy->isNotEmpty())
               $data[$today] = $todayData;
-        
+
     }
         return $data;
     }
 
     public function data(){
-      
-        $currentDate = Carbon::now()->startOfDay();
-        $currentWeek = Carbon::now()->startOfDay()->subDays(7);
-        $currentMonth = Carbon::now()->startOfDay()->subDays(30);
-        $currentYear = Carbon::now()->startOfDay()->subDays(365);
         
+        $date = Carbon::now();
+        $monthName = $date->format('F');
+
+        $currentDate = Carbon::now()->startOfDay();
+        $currentWeek = Carbon::now()->startOfWeek();
+        $currentMonth = Carbon::now()->startOfMonth();
+        $currentYear = Carbon::now()->startOfYear();
+
         $todayProfit = Sold::where('created_at' ,'>', $currentDate)->sum('profit');
         $lastWeekProfit = Sold::where('created_at', '>', $currentWeek)->sum('profit');
         $lastMonthProfit = Sold::where('created_at', '>', $currentMonth)->sum('profit');
@@ -171,11 +174,11 @@ class ItemController extends Controller
         $lastYearSoldAmount = Sold::where('created_at', '>', $currentYear)->sum('price_sold');
         $totelSoldAmount = Sold::sum('price_sold');
 
-        $todayBuyAmount = Buy::where('created_at' ,'>', $currentDate)->sum('price_buy');
-        $lastWeekBuyAmount = Buy::where('created_at', '>', $currentWeek)->sum('price_buy');
-        $lastMonthBuyAmount = Buy::where('created_at', '>', $currentMonth)->sum('price_buy');
-        $lastYearBuyAmount = Buy::where('created_at', '>', $currentYear)->sum('price_buy');
-        $totelBuyAmount = Buy::sum('price_buy');
+        $todayBuyAmount = Buy::where('created_at' ,'>', $currentDate)->sum('amount');
+        $lastWeekBuyAmount = Buy::where('created_at', '>', $currentWeek)->sum('amount');
+        $lastMonthBuyAmount = Buy::where('created_at', '>', $currentMonth)->sum('amount');
+        $lastYearBuyAmount = Buy::where('created_at', '>', $currentYear)->sum('amount');
+        $totelBuyAmount = Buy::sum('amount');
 
 
         $todayItemBuy = Buy::where('created_at' ,'>', $currentDate)->sum('quantity');
@@ -184,8 +187,8 @@ class ItemController extends Controller
         $lastYearItemBuy = Buy::where('created_at', '>', $currentYear)->sum('quantity');
         $totelItemBuy = Buy::sum('quantity');
 
-        
-        
+
+
         return [
             'profit' => [
                 'todayProfit' => $todayProfit,
@@ -201,7 +204,7 @@ class ItemController extends Controller
                 'lastYearItemSold' => $lastYearItemSold,
                 'totelItemSold' => $totelItemSold
             ],
-            
+
             'itemBuy' => [
                 'todayItemBuy' => $todayItemBuy,
                 'lastWeekItemBuy' => $lastWeekItemBuy,
@@ -224,7 +227,9 @@ class ItemController extends Controller
                 'lastMonthBuyAmount' => $lastMonthBuyAmount,
                 'lastYearBuyAmount' => $lastYearBuyAmount,
                 'totelBuyAmount' => $totelBuyAmount
-            ]
+            ],
+
+            'MonthName' => $monthName,
         ];
     }
 }

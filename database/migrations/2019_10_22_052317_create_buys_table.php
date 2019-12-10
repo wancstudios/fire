@@ -20,7 +20,8 @@ class CreateBuysTable extends Migration
             $table->integer('quantity');
             $table->integer('price_buy');
             // $table->date('date_buy');
-            $table->integer('profit');
+            $table->integer('profit')->nullable();
+            $table->integer('amount');
             // $table->integer('item_id');
             $table->timestamps();
         });
