@@ -10,25 +10,44 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/applogo"
         android:label="Arsh Trading"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/applogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="${usesCleartextTraffic}">
-        <activity android:name=".Sold_recycler"></activity>
-        <activity android:name=".ItemList" />
-        <activity android:name=".DailyRecords" />
-        <activity android:name=".Manage" />
-        <activity android:name=".Sold" />
-        <activity android:name=".Buy" />
-        <activity android:name=".Additem" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".splashscreen"  android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Sold_recycler"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ItemList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DailyRecords"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Manage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Sold"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Buy"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Additem"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+
         </activity>
 
         <meta-data
