@@ -21,8 +21,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        // $var = Item::find(6);
-        // $var = Sold::where('name','MD')->first();
+//         $var = Item::find(6);
+//         $var = Sold::where('name','MD')->first();
         // dd($var->item->quantity);
         return ItemResource::collection(Item::all());
     }
@@ -30,12 +30,12 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        if(Item::where('name',$request->name)->first()) return "0";
+        if (Item::where('name', $request->name)->first()) return "0";
         else {
             Item::create($request->all());
             return "1";
@@ -46,53 +46,52 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Item  $item
+     * @param \App\Item $item
      * @return \Illuminate\Http\Response
      */
     public function show($item)
     {
-        $item = Item::where('name', $item)->orWhere('id',$item)->first();
+        $item = Item::where('name', $item)->orWhere('id', $item)->first();
         return new ItemResource($item);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Item  $item
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Item $item
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $item_name)
     {
         $item = Item::whereName($item_name)->first();
-        if($item){
+        if ($item) {
             $item->update($request->all());
-             return "1";
-        }
-        else return "0";
+            return "1";
+        } else return "0";
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Item  $item
+     * @param \App\Item $item
      * @return \Illuminate\Http\Response
      */
     public function destroy($item)
     {
-        $item = Item::where('name', $item)->orWhere('id',$item)->first();
-        if($item->delete())
-        {
+        $item = Item::where('name', $item)->orWhere('id', $item)->first();
+        if ($item->delete()) {
             return "1";
-        }
-        else "0";
+        } else "0";
     }
 
-    public function itemCount(){
+    public function itemCount()
+    {
         return Item::all()->count();
     }
 
-    public function dailyRecords(){
+    public function dailyRecords()
+    {
         $data = array();
         $startingDate = Sold::select(DB::raw('DATE(`created_at`) as date'))->oldest()->first();
         $start = $startingDate->date;
@@ -100,20 +99,22 @@ class ItemController extends Controller
         $period = CarbonPeriod::create($start, $date);
         $periodCount = $period->count();
 
-        for($i = 0; $i < $periodCount; $i++){
-        $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
-        // $date = Carbon::now()->subDay(0)->isoFormat('YYYY-MM-DD');
-        $today = Carbon::now()->subDay($i)->isoFormat('DD-MM-YYYY');
-        $Profit = Sold::whereDate('created_at', $date)->sum('profit');
-        $soldItem = Sold::whereDate('created_at', $date)->sum('quantity');
-        $buyItem = Buy::whereDate('created_at', $date)->sum('quantity');
-        $web = array("profit" => $Profit, "soldItem" => $soldItem, "buyItem" => $buyItem);
-        $data[$today] = $web;
-    }
+        for ($i = 0; $i < $periodCount; $i++) {
+            $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
+            // $date = Carbon::now()->subDay(0)->isoFormat('YYYY-MM-DD');
+            $today = Carbon::now()->subDay($i)->isoFormat('DD-MM-YYYY');
+            $Profit = Sold::whereDate('created_at', $date)->sum('profit');
+            $soldItem = Sold::whereDate('created_at', $date)->sum('quantity');
+            $buyItem = Buy::whereDate('created_at', $date)->sum('quantity');
+            $web = array("profit" => $Profit, "soldItem" => $soldItem, "buyItem" => $buyItem);
+            $data[$today] = $web;
+        }
         return $data;
     }
 
-    public function dailyData(){
+
+    public function dailyData()
+    {
         $data = array();
 
         $startingDate = Sold::select(DB::raw('DATE(`created_at`) as date'))->oldest()->first();
@@ -123,7 +124,7 @@ class ItemController extends Controller
         $period = CarbonPeriod::create($start, $date);
         $periodCount = $period->count();
 
-        for($i = 0 ; $i < $periodCount ; $i++){
+        for ($i = 0; $i < $periodCount; $i++) {
 
             $date = Carbon::now()->subDay($i)->isoFormat('YYYY-MM-DD');
             $today = Carbon::now()->subDay($i)->isoFormat('DD-MM-YYYY');
@@ -131,22 +132,23 @@ class ItemController extends Controller
             $customers = Sold::whereDate('created_at', $date)->select('name','customer','quantity','price_sold as price', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
             $customersBuy = Buy::whereDate('created_at', $date)->select('name', 'vender as customer', 'quantity', 'amount as price', DB::raw('TIME(`created_at`) as time'), DB::raw('DATE(`created_at`) as date'))->get();
 
-            foreach($customers as $cs)
-                 $cs->setAttribute('type','sold');
-            foreach($customersBuy as $cb)
-                 $cb->setAttribute('type','buy');
+            foreach ($customers as $cs)
+                $cs->setAttribute('type', 'sold');
+            foreach ($customersBuy as $cb)
+                $cb->setAttribute('type', 'buy');
 
             $todayData = $customers->concat($customersBuy)->all();
 
-            if($customers->isNotEmpty() || $customersBuy->isNotEmpty())
-              $data[$today] = $todayData;
+            if ($customers->isNotEmpty() || $customersBuy->isNotEmpty())
+                $data[$today] = $todayData;
 
-    }
+        }
         return $data;
     }
 
-    public function data(){
-        
+    public function data()
+    {
+
         $date = Carbon::now();
         $monthName = $date->format('F');
 
@@ -155,38 +157,37 @@ class ItemController extends Controller
         $currentMonth = Carbon::now()->startOfMonth();
         $currentYear = Carbon::now()->startOfYear();
 
-        $todayProfit = Sold::where('created_at' ,'>', $currentDate)->sum('profit');
+        $todayProfit = Sold::where('created_at', '>', $currentDate)->sum('profit');
         $lastWeekProfit = Sold::where('created_at', '>', $currentWeek)->sum('profit');
         $lastMonthProfit = Sold::where('created_at', '>', $currentMonth)->sum('profit');
         $lastYearProfit = Sold::where('created_at', '>', $currentYear)->sum('profit');
         $totelProfit = Sold::sum('profit');
 
 
-        $todayItemSold = Sold::where('created_at' ,'>', $currentDate)->sum('quantity');
+        $todayItemSold = Sold::where('created_at', '>', $currentDate)->sum('quantity');
         $lastWeekItemSold = Sold::where('created_at', '>', $currentWeek)->sum('quantity');
         $lastMonthItemSold = Sold::where('created_at', '>', $currentMonth)->sum('quantity');
         $lastYearItemSold = Sold::where('created_at', '>', $currentYear)->sum('quantity');
         $totelItemSold = Sold::sum('quantity');
 
-        $todaySoldAmount = Sold::where('created_at' ,'>', $currentDate)->sum('price_sold');
+        $todaySoldAmount = Sold::where('created_at', '>', $currentDate)->sum('price_sold');
         $lastWeekSoldAmount = Sold::where('created_at', '>', $currentWeek)->sum('price_sold');
         $lastMonthSoldAmount = Sold::where('created_at', '>', $currentMonth)->sum('price_sold');
         $lastYearSoldAmount = Sold::where('created_at', '>', $currentYear)->sum('price_sold');
         $totelSoldAmount = Sold::sum('price_sold');
 
-        $todayBuyAmount = Buy::where('created_at' ,'>', $currentDate)->sum('amount');
+        $todayBuyAmount = Buy::where('created_at', '>', $currentDate)->sum('amount');
         $lastWeekBuyAmount = Buy::where('created_at', '>', $currentWeek)->sum('amount');
         $lastMonthBuyAmount = Buy::where('created_at', '>', $currentMonth)->sum('amount');
         $lastYearBuyAmount = Buy::where('created_at', '>', $currentYear)->sum('amount');
         $totalBuyAmount = Buy::sum('amount');
 
 
-        $todayItemBuy = Buy::where('created_at' ,'>', $currentDate)->sum('quantity');
+        $todayItemBuy = Buy::where('created_at', '>', $currentDate)->sum('quantity');
         $lastWeekItemBuy = Buy::where('created_at', '>', $currentWeek)->sum('quantity');
         $lastMonthItemBuy = Buy::where('created_at', '>', $currentMonth)->sum('quantity');
         $lastYearItemBuy = Buy::where('created_at', '>', $currentYear)->sum('quantity');
         $totelItemBuy = Buy::sum('quantity');
-
 
 
         return [
