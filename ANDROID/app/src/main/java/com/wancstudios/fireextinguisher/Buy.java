@@ -77,7 +77,7 @@ public class Buy extends AppCompatActivity {
 
     public void postData()
     {
-        String url = "http://192.168.0.112:8000/api/buy";
+        String url = "http://fireextinguisher.xyz/api/buy";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
             new Response.Listener<String>() {

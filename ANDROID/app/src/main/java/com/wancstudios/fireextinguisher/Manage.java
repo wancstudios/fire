@@ -92,7 +92,7 @@ public class Manage extends AppCompatActivity {
 
     public void UpdateData()
     {
-        String url = "http://192.168.0.112:8000/api/item/"+manage_name.getText().toString();
+        String url = "http://fireextinguisher.xyz/api/item/"+manage_name.getText().toString();
 
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, url,
             new Response.Listener<String>() {
@@ -171,7 +171,7 @@ public class Manage extends AppCompatActivity {
 
     public void DeleteData()
     {
-        String url = "http://192.168.0.112:8000/api/item/"+manage_name.getText().toString();
+        String url = "http://fireextinguisher.xyz/api/item/"+manage_name.getText().toString();
 
         final RequestQueue requestQueue = Volley.newRequestQueue(Manage.this);
 

@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> itemsname;
-    public static String url = "http://192.168.0.112:8000/api/item";
+    public static String url = "http://fireextinguisher.xyz/api/item";
 
     TextView itemcount, soldcount, buycount,soldamount,buyamount,profitmain,Monthname;
 
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     public void DataCounts() {
         final RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.0.112:8000/api/data", null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://fireextinguisher.xyz/api/data", null,
             new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
     public void Itemcount() {
         final RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
 
-        StringRequest request = new StringRequest(Request.Method.GET, "http://192.168.0.112:8000/api/itemCount", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, "http://fireextinguisher.xyz/api/itemCount", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 itemcount.setText(response.toString());
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
     public void Amount() {
         final RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.0.112:8000/api/data", null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://fireextinguisher.xyz/api/data", null,
             new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
     public void MonthName() {
         final RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.0.112:8000/api/data", null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://fireextinguisher.xyz/api/data", null,
             new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
