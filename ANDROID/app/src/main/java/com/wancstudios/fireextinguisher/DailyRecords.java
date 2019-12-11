@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class DailyRecords extends AppCompatActivity {
 
-    public String url = "http://192.168.0.112:8000/api/dailyData";
+    public String url = "http://fireextinguisher.xyz/api/dailyData";
     RecyclerView recyclelist;
     public ArrayList<DailyRecordsContainer> Dailyrecordlist;
 

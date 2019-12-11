@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class ItemList extends AppCompatActivity {
 
-    public String url = "http://192.168.0.112:8000/api/item";
+    public String url = "http://fireextinguisher.xyz/api/item";
 
 
     RecyclerView recyclelist;

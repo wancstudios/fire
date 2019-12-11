@@ -114,7 +114,7 @@ public class Additem extends AppCompatActivity {
 
     public void postData()
     {
-        String url = "http://192.168.0.112:8000/api/item";
+        String url = "http://fireextinguisher.xyz/api/item";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
             new Response.Listener<String>() {

@@ -41,7 +41,7 @@ import java.util.Map;
 
 public class Sold_recycler extends AppCompatActivity {
 
-    public String url = "http://192.168.0.112:8000/api/sold";
+    public String url = "http://fireextinguisher.xyz/api/sold";
     RecyclerView recyclelist;
     public ArrayList<SoldContainer> soldContainers;
     public String newbalance,ID;
@@ -149,7 +149,7 @@ public class Sold_recycler extends AppCompatActivity {
 
     public void updatedatabalance()
     {
-        String url = "http://192.168.0.112:8000/api/sold/"+ID;
+        String url = "http://fireextinguisher.xyz/api/sold/"+ID;
 
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, url,
             new Response.Listener<String>() {
