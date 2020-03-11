@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
 use Carbon\CarbonPeriod;
-
+ 
 class ItemController extends Controller
 {
     /**
