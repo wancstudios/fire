@@ -102,7 +102,7 @@
         android:layout_width="210sp"
         android:layout_height="40sp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:text="DASHBOARD"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#F0304D"
